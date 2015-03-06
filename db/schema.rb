@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150306070308) do
     t.datetime "updated_at",                 null: false
     t.string   "full_name"
     t.string   "email"
-    t.integer  "karma"
+    t.integer  "karma",      default: 0
     t.boolean  "admin",      default: false
   end
 
