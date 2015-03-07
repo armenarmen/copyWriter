@@ -1,17 +1,26 @@
 Rails.application.routes.draw do
-  get 'emails/index'
+  get 'sessions/new'
 
-  get 'emails/show'
+  # get 'emails/index'
 
-  get 'emails/create'
+  # get 'emails/show'
 
-  get 'emails/update'
+  # get 'emails/create'
 
-  get 'emails/new'
+  # get 'emails/update'
 
-  get 'emails/edit'
+  # get 'emails/new'
 
+  # get 'emails/edit'
+
+  resources :emails
   resources :users
+
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+
+  get 'contact' => 'static_pages#contact'
   # get 'users/edit'
 
   # get 'users/index'

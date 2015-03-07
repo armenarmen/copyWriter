@@ -3,3 +3,12 @@
 <%= @user.full_name %><br>
 <%= @user.email %><br>
 karma: <%= @user.karma %>
+
+<div>
+  Emails:
+  <% @emails.each do |email| %>
+    <div><%= email.subject %></div>
+    <div><%= email.body %></div>
+    <div><%= email.comment %></div>
+  <% end %>
+</div>
