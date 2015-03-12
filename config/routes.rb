@@ -13,8 +13,12 @@ Rails.application.routes.draw do
 
   # get 'emails/edit'
 
-  resources :emails
+  resources :emails #do
+    # resources :comments, :only => [:create]
+  # end
   resources :users
+  resources :comments, only: [:create]
+
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'

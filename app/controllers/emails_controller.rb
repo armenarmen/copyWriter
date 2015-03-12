@@ -4,13 +4,13 @@ class EmailsController < ApplicationController
   end
 
   def show
+    @email = Email.find(params[:id])
+    @comment = Comment.new
   end
 
   def create
     @email = current_user.emails.new(user_params)
-    # @user = User.new(user_params)
     if @email.save
-      # log_in @user
       flash[:success] = "Email Written"
       redirect_to :root
     else

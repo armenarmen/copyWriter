@@ -13,4 +13,5 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 7 }
 
   has_many :emails, dependent: :destroy
+  has_many :comments, dependent: :destroy
 end

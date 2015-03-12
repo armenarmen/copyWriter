@@ -3,6 +3,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th></th>
       <th>subject</th>
       <th>body</th>
       <th>comment</th>
@@ -11,6 +12,7 @@
   <tbody>
     <% @emails.each do |email| %>
       <tr>
+        <td><%= link_to "click me", email_path(email.id) %></td>
         <td><%= email.subject %></td>
         <td><%= email.body %></td>
         <td><%= email.comment %></td>

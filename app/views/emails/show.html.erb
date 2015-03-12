@@ -1,2 +1,32 @@
-<h1>Emails#show</h1>
-<p>Find me in app/views/emails/show.html.erb</p>
+<h1><%= @email.subject %></h1>
+<h2><%= @email.body %></h2>
+<p><%= @email.user.full_name %> says thie email exists because...<em>"<%= @email.comment %>"</em></p>
+
+<h3>Comments</h3>
+<% @email.comments.each do |comment| %>
+  <%= comment.message %>
+  <%= comment.user.present? %><!-- #.full_name.present? ? comment.user.full_name : "full name missing?" %> -->
+  <br>
+<% end %>
+<h4>Give Tips</h4>
+<%= params %>
+<%= current_user.id %>
+<%= form_for(@comment) do |f| %>
+
+      <%#= render 'shared/error_messages' %>
+
+      subject
+      <%= f.text_field :subject %>
+      email_id
+      <%= f.hidden_field :email_id, value: params[:id]  %>
+      <%= f.hidden_field :user_id, value: current_user.id  %>
+      <br>
+      body
+      <%= f.text_field :body %>
+      <br>
+      comment
+      <%= f.text_field :message %>
+
+
+      <%= f.submit "Create my email", class: "btn btn-primary" %>
+    <% end %>
