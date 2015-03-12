@@ -1,11 +1,41 @@
-<h1><%= @email.subject %></h1>
+<h1><%= @email.subject %> <span class="glyphicon glyphicon-envelope"></span></h1>
+
 <h2><%= @email.body %></h2>
 <p><%= @email.user.full_name %> says thie email exists because...<em>"<%= @email.comment %>"</em></p>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-header">
+        <h1><%= @email.user.full_name %>'s email <small>Subtext for header</small></h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="email-block">
+      <div class="to-from-blah">
+        <ul>
+          <li>To: mylead@example.com</li>
+          <li>From: <%= @email.user.full_name %>'s email address</li>
+          <li>Subject: <%= @email.subject %> </li>
+        </ul>
+      </div>
+      <div class="proposed-copy">
+        <p><%= @email.body %></p>
+      </div>
+      <div class="proposed-audience">
+        <h4>what this email is for:</h4>
+        <p><%= @email.comment %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <h3>Comments</h3>
 <% @email.comments.each do |comment| %>
   <%= comment.message %>
-  <%= comment.user.present? %><!-- #.full_name.present? ? comment.user.full_name : "full name missing?" %> -->
+  <%= comment.user.present? ? comment.user.full_name : "full name missing?" %><!-- #.full_name.present? ? comment.user.full_name : "full name missing?" %> -->
   <br>
 <% end %>
 <h4>Give Tips</h4>
@@ -22,7 +52,7 @@
       <%= f.hidden_field :user_id, value: current_user.id  %>
       <br>
       body
-      <%= f.text_field :body %>
+      <%= f.text_area :body %>
       <br>
       comment
       <%= f.text_field :message %>
