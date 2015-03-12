@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @comment =  @email.comments.new(comment_params)
     if @comment.save
       flash[:success] = "Comment Written"
-      redirect_to :root
+      redirect_to :back
     else
       render 'new'
     end
