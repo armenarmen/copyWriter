@@ -1,0 +1,12 @@
+<% armen = @email.body %>
+
+<% @comments.each do |c| %>
+  <% armen.insert(c.char_ended_at, "</span>") %>
+  <% armen.insert(c.char_began_at, "<span class='commented' style='background-color: yellow;'>") %>
+  <div class="">
+    <h2><%= c.id %></h2>
+    <span class="posted-comments" style="background:pink; display: none;" id = "<%= c.id %>"><h1><%= c.message %> </h1></span>
+  </div>
+<% end %>
+
+<%= armen.html_safe %>

@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312043611) do
+ActiveRecord::Schema.define(version: 20150318051745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.integer  "email_id"
-    t.string   "subject"
-    t.text     "body"
     t.integer  "user_id"
     t.integer  "score"
     t.text     "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "char_began_at"
+    t.integer  "char_ended_at"
   end
 
   create_table "emails", force: :cascade do |t|

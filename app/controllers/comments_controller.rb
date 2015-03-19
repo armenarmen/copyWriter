@@ -1,10 +1,12 @@
 class CommentsController < ApplicationController
   def index
     #rmv
+    # actually I need this.
   end
 
   def show
     # rm
+    #redefine it so that this only shows the top one.
   end
 
   def create
@@ -14,7 +16,8 @@ class CommentsController < ApplicationController
       flash[:success] = "Comment Written"
       redirect_to :back
     else
-      render 'new'
+      flash[:success] = "didn't work"
+      redirect_to :back
     end
   end
 
@@ -33,7 +36,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:subject, :body, :message, :user_id, :email_id)
+    params.require(:comment).permit(:message, :user_id, :email_id, :char_began_at, :char_ended_at)
   end
 
 end

@@ -1,62 +1,66 @@
-<h1><%= @email.subject %> <span class="glyphicon glyphicon-envelope"></span></h1>
-
-<h2><%= @email.body %></h2>
-<p><%= @email.user.full_name %> says thie email exists because...<em>"<%= @email.comment %>"</em></p>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.selection/1.0.1/jquery.selection.min.js"></script>
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="page-header">
-        <h1><%= @email.user.full_name %>'s email <small>Subtext for header</small></h1>
-      </div>
-    </div>
+
+  <div class="page-header">
+    <h1><%= @email.user.full_name %>'s email <small>Subtext for header</small></h1>
   </div>
+
+
   <div class="row">
-    <div class="email-block">
-      <div class="to-from-blah">
-        <ul>
-          <li>To: mylead@example.com</li>
-          <li>From: <%= @email.user.full_name %>'s email address</li>
-          <li>Subject: <%= @email.subject %> </li>
-        </ul>
-      </div>
-      <div class="proposed-copy">
-        <p><%= @email.body %></p>
-      </div>
-      <div class="proposed-audience">
-        <h4>what this email is for:</h4>
-        <p><%= @email.comment %></p>
-      </div>
+    <!-- <div class="col-md-1"></div> -->
+    <div class="col-md-9">
+      <table>
+        <th>
+          <tr>
+            <th style="width:100px"></th>
+            <th></th>
+          </tr>
+        </th>
+        <tbody>
+          <tr>
+            <td>To: </td>
+            <td>mylead@example.com</td>
+          </tr>
+          <tr>
+            <td>From: </td>
+            <td><%= @email.user.full_name %>'s email address</td>
+          </tr>
+          <tr>
+            <td>Subject: </td>
+            <td><%= @email.subject %> </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <div class="col-md-3"><h3>Purpose</h3></div>
+  </div>
+  <br>
+  <div class="row">
+    <!-- <div class="col-md-1"></div> -->
+    <div class="col-md-8" id="email-body"><%= @email.body %></div>
+    
+    <div class="col-md-8"><%= @email.render_comments %></div>
+    <div class="col-md-4">
+      <%= @email.comment %>
+    </div>
+
   </div>
 </div>
 
+<div id="new-comment" style="background:red; display: none;">
+  <%= form_for(@comment) do |f| %>
 
-<h3>Comments</h3>
-<% @email.comments.each do |comment| %>
-  <%= comment.message %>
-  <%= comment.user.present? ? comment.user.full_name : "full name missing?" %><!-- #.full_name.present? ? comment.user.full_name : "full name missing?" %> -->
-  <br>
-<% end %>
-<h4>Give Tips</h4>
-<%= params %>
-<%= current_user.id %>
-<%= form_for(@comment) do |f| %>
+    <%= f.hidden_field :email_id, value: params[:id]  %>
+    <%= f.hidden_field :user_id, value: current_user.id  %>
+    <br>
+    comment
+    <%= f.text_field :message %>
+    <br>began
+    <%= f.text_field :char_began_at %>
+    <br>ended
+    <%= f.text_field :char_ended_at %>
 
-      <%#= render 'shared/error_messages' %>
-
-      subject
-      <%= f.text_field :subject %>
-      email_id
-      <%= f.hidden_field :email_id, value: params[:id]  %>
-      <%= f.hidden_field :user_id, value: current_user.id  %>
-      <br>
-      body
-      <%= f.text_area :body %>
-      <br>
-      comment
-      <%= f.text_field :message %>
-
-
-      <%= f.submit "Create my email", class: "btn btn-primary" %>
-    <% end %>
+    <%= f.submit "Create my email", class: "btn btn-primary" %>
+  <% end %>
+</div>
