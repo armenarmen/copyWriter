@@ -19,6 +19,52 @@ $ ->
         $(@).css("background-color", "red");
 	$comments.mouseout ->
         $(@).css("background-color", "yellow");
-        
+
+    #$comments.click ->
+    #    console.log $(@).text()
+    #    $('.posted-comments').toggle()
+
+
+
+
+    $current_comment = $ "#current-comment"
     $comments.click ->
-        $('.posted-comments').toggle()
+    #    $current_comment.text($(@).text()) # this one gets text in span...
+
+        
+
+        # This gets the comment.id from the highlighted one clicked.
+        my_class_number = "." + $(@).attr("class").replace('commented ','')
+        console.log my_class_number
+        console.log $current_comment.text()
+
+        # Not, find the text of the comment and put it into the current_comment DIV
+
+        my_text = $( "#{my_class_number}:first" ).text();
+
+        $current_comment.html(my_text)
+
+        console.log $(my_class_number).length
+
+        console.log $(my_class_number).prev().text()
+
+        console.log $( "#{my_class_number}:first" ).text();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
