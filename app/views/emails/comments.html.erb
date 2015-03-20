@@ -7,20 +7,20 @@
   <% open_span = "<span class='commented #{c.id}' style='background-color: yellow;'> " %>
   <% armen.insert(c.char_began_at, open_span) %>
 
-  <div class="" style="background: gray">
+  <div class="" style="background: gray; display:none;">
 
     <h2>
       <%= c.id %>
     </h2>
-
-    <span class="posted-comments <%= c.id %>" style="background:pink; display: true;" id = "<%= c.id %>">
+    
+    <div class="posted-comments <%= c.id %>" style="background:pink; display: true;" id = "<%= c.id %>">
       <%= c.message %>
-    </span>
+    </div>
 
   </div>
-  
+
 <% end %>
 
-<div id="current-comment" style="background:orange;">current-comment</div>
+
 
 <%= armen.html_safe %>

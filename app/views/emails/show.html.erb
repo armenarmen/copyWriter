@@ -6,6 +6,10 @@
     <h1><%= @email.user.full_name %>'s email <small>Subtext for header</small></h1>
   </div>
 
+<h3><div id="current-comment" style="background:orange;">current-comment</div></h3>
+
+  <button id="read-comments">Read Comments</button>
+  <button id="write-comments">Add Comments</button>
 
   <div class="row">
     <!-- <div class="col-md-1"></div> -->
@@ -37,17 +41,17 @@
   </div>
   <br>
   <div class="row">
-    <!-- <div class="col-md-1"></div> -->
-    <div class="col-md-8" id="email-body"><%= @email.body %></div>
-    
-    <div class="col-md-8"><%= @email.render_comments %></div>
+    <div  id="email-body" style="color: red; position:absolute; z-index:2;"><%= @email.body %></div>
+
+    <!-- MARKED UP ONE -->
+    <div id="commented-body" style=" z-index:1; position:absolute;" ><%= @email.render_comments %></div>
     <div class="col-md-4">
       <%= @email.comment %>
     </div>
 
   </div>
 </div>
-
+<br><br><br><br><br><br><br><br>
 <div id="new-comment" style="background:red; display: none;">
   <%= form_for(@comment) do |f| %>
 
