@@ -50,19 +50,23 @@
   </div>
 </div>
 <br><br><br><br><br><br><br><br>
-<div id="new-comment" style="background:red; display: none;">
-  <%= form_for(@comment) do |f| %>
+<div class="modal-content" style="display: none;" id="new-comment">
+  <div class="modal-body">
+    <div style="background:red;" >
+      <%= form_for(@comment) do |f| %>
 
-    <%= f.hidden_field :email_id, value: params[:id]  %>
-    <%= f.hidden_field :user_id, value: current_user.id  %>
-    <br>
-    comment
-    <%= f.text_field :message %>
-    <br>began
-    <%= f.text_field :char_began_at %>
-    <br>ended
-    <%= f.text_field :char_ended_at %>
-
-    <%= f.submit "Create my email", class: "btn btn-primary" %>
-  <% end %>
+        <%= f.hidden_field :email_id, value: params[:id]  %>
+        <%= f.hidden_field :user_id, value: current_user.id  %>
+        <br>
+        comment
+        <%= f.text_area :message %>
+        <br>began
+        <%= f.text_field :char_began_at %>
+        <br>ended
+        <%= f.text_field :char_ended_at %>
+        <br>
+        <%= f.submit "Create my email", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
