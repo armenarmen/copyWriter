@@ -3,8 +3,9 @@
 <div class="container-fluid">
 
   <div class="page-header">
-    <h1><%= @email.user.full_name %>'s email <small>Subtext for header</small></h1>
+    <h1><%= @email.user.full_name %>'s email <small>RED IS WRITE</small></h1>
   </div>
+
 
 <h3><div id="current-comment" style="background:orange;">current-comment</div></h3>
 
@@ -41,7 +42,7 @@
   </div>
   <br>
   <div class="row">
-    <div  id="email-body" style="color: red; position:absolute; z-index:2;"><%= @email.body %></div>
+    <div  id="email-body" type="text" style="color: red; position:absolute; z-index:2;"><%= @email.body %></div>
 
     <!-- MARKED UP ONE -->
     <div id="commented-body" style=" z-index:1; position:absolute;" ><%= @email.render_comments %></div>
