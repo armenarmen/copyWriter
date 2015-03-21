@@ -9,9 +9,6 @@
 
 <h3><div id="current-comment" style="background:orange;">current-comment</div></h3>
 
-  <button id="read-comments">Read Comments</button>
-  <button id="write-comments">Add Comments</button>
-
   <div class="row">
     <!-- <div class="col-md-1"></div> -->
     <div class="col-md-9">
@@ -42,10 +39,10 @@
   </div>
   <br>
   <div class="row">
-    <div  id="email-body" type="text" style="color: red; position:absolute; z-index:2;"><%= @email.body %></div>
+    <div  id="email-body" type="text" style="position:absolute; z-index:2;"><%= @email.body %></div>
 
     <!-- MARKED UP ONE -->
-    <div id="commented-body" style=" z-index:1; position:absolute;" ><%= @email.render_comments %></div>
+    <div id="commented-body" type="text" style=" z-index:1; position:absolute;" ><%= @email.render_comments %></div>
     <div class="col-md-4">
       <%= @email.comment %>
     </div>

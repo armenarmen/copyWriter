@@ -4,7 +4,8 @@
   <% armen.insert(c.char_ended_at, "</span>" ) %>
 
   <!-- HOW THE FUCK TO PUT VARIABLES IN HERE?! -->
-  <% open_span = "<span class='commented #{c.id}' style='background-color: yellow;'> " %>
+  <!-- BLOCK MARKING UP IF THE MARKUP ALREADY EXISTS  -->
+  <% open_span = "<span class='commented #{c.id}' style='background-color: yellow;'>" %>
   <% armen.insert(c.char_began_at, open_span) %>
 
   <div class="" style="background: gray; display:none;">
@@ -12,7 +13,7 @@
     <h2>
       <%= c.id %>
     </h2>
-    
+
     <div class="posted-comments <%= c.id %>" style="background:pink; display: true;" id = "<%= c.id %>">
       <%= c.message %>
     </div>

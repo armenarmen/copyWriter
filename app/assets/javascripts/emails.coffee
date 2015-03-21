@@ -21,8 +21,6 @@ $ ->
             $('#commented-body').css("z-index", "1")
             $('#email-body').css("z-index", "2")
         else
-            console.log "in ELSE"
-            console.log selObj
             $('#new-comment').hide()
             $('#commented-body').css("z-index", "2")
             $('#email-body').css("z-index", "1")
@@ -31,7 +29,6 @@ $ ->
     commented_body.mouseup ->
         if window.getSelection()
             searchParam = window.getSelection().toString()
-            alert searchParam
 
             #### MOVE THE EMAIL BODY BACK UP TO THE TOP BRUH ####
             $('#commented-body').css("z-index", "1")
@@ -40,11 +37,12 @@ $ ->
             #### NOW FIND THE SEARCH PARAM IN THE EMAIL BODY ###
             $beginSearchParam = $('#email-body').text().search(searchParam)
             $endSearchParam = $beginSearchParam + searchParam.length
+            
+            if $beginSearchParam != ($beginSearchParam + $endSearchParam)
+                $('#new-comment').show()
+                $('#comment_char_began_at').val($beginSearchParam)
+                $('#comment_char_ended_at').val($endSearchParam)
 
-            alert "#{$beginSearchParam} - #{$endSearchParam}"
-            $('#new-comment').show()
-            $('#comment_char_began_at').val($beginSearchParam)
-            $('#comment_char_ended_at').val($endSearchParam)
 
     $comments = $ ".commented"
 
@@ -56,29 +54,11 @@ $ ->
         $(@).css("background-color", "yellow");
 
 
-    # ---------------
-    # Toggling between read and write views
-
-    $read_comment = $ "#read-comments"
-    $write_comment = $ "#write-comments"
-
-    $read_comment.click ->
-        $('#commented-body').css("z-index", "2")
-        $('#email-body').css("z-index", "1")
-
-    $write_comment.click ->
-        $('#commented-body').css("z-index", "1")
-        $('#email-body').css("z-index", "2")
-
-    # -------------
-
     $current_comment = $ "#current-comment"
 
     $comments.click ->
         # This gets the comment.id from the highlighted one clicked.
         my_class_number = "." + $(@).attr("class").replace('commented ','')
-        ####console.log my_class_number
-        ####console.log $current_comment.text()
 
         # find the text of the comment and put it into the current_comment DIV
 
