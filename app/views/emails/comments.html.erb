@@ -1,20 +1,21 @@
+<!-- NEED TO ACCOUNT FOR COMMENTS ON SAME THING, AND NOT -->
+
 <% armen = @email.body %>
 
-<% @comments.each do |c| %>
-  <% armen.insert(c.char_ended_at, "</span>" ) %>
 
-  <!-- HOW THE FUCK TO PUT VARIABLES IN HERE?! -->
-  <!-- BLOCK MARKING UP IF THE MARKUP ALREADY EXISTS  -->
+<% @comments.each do |c| %>
+
+  <% armen.insert(c.char_ended_at, "</span>" ) %>
   <% open_span = "<span class='commented #{c.id}' style='background-color: yellow;'>" %>
   <% armen.insert(c.char_began_at, open_span) %>
 
-  <div class="" style="background: gray; display:none;">
+  <div class="" style="display:none;">
 
     <h2>
       <%= c.id %>
     </h2>
 
-    <div class="posted-comments <%= c.id %>" style="background:pink; display: true;" id = "<%= c.id %>">
+    <div class="posted-comments <%= c.id %>" style="background:pink;" id = "<%= c.id %>">
       <%= c.message %>
     </div>
 
