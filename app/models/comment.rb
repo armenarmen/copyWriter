@@ -5,10 +5,15 @@ class Comment < ActiveRecord::Base
   validates :char_began_at, presence: true, :allow_nil => false
   validates :char_ended_at, presence: true, :allow_nil => false
 
-  validates_numericality_of :char_began_at, :only_integer => true
-  validates_numericality_of :char_ended_at, :only_integer => true
+  validates_numericality_of :char_began_at, :only_integer => true, :less_than => :char_ended_at
+  validates_numericality_of :char_ended_at, :only_integer => true, :greater_than => :char_began_at
 
   validate :no_range_overlap, on: :create
+  validates :message, presence: true
+
+
+
+  has_many :suggestions, dependent: :destroy
 
   def no_range_overlap
     if email.comments.where("char_began_at < #{char_began_at} AND char_ended_at > #{char_began_at}").count >= 1

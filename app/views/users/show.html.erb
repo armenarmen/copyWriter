@@ -1,14 +1,14 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<%= @user.full_name %><br>
-<%= @user.email %><br>
-karma: <%= @user.karma %>
+<h1><%= @user.full_name %>'s Profile</h1>
+<br>
+<%#= @user.email %><br>
+<!-- karma: <%#= @user.karma %> -->
 
-<div>
-  Emails:
-  <% @emails.each do |email| %>
-    <div><%= email.subject %></div>
-    <div><%= email.body %></div>
-    <div><%= email.comment %></div>
-  <% end %>
+
+<div class="col-md-12">
+  <p>You have submitted <%= @user.emails.count %> email for review!</p>
+  <p><%= link_to "Get Advise", new_email_path %></p>
+  <p>You have left <%= @user.comments.count %> comments</p>
+  <p><%= link_to "view emails", emails_path %></p>
 </div>
+
+<%= link_to "edit", user_path(current_user.id) %>

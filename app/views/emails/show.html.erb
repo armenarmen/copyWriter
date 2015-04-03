@@ -4,10 +4,11 @@
 
   <div class="page-header">
     <h1><%= @email.user.full_name %>'s email</h1>
+
   </div>
 
   <div class="row">
-    <div class="col-md-6"><!-- This is the email column --> 
+    <div class="col-md-6">
       <div class="row">
         <table>
           <th>
@@ -40,26 +41,27 @@
       <div class="row" style="margin-bottom:110px">
         <div id="email-body" type="text" style="position:absolute; z-index:2; width:100%;"><%= @email.body %></div>
         <div id="commented-body" type="text" style=" z-index:1; position:absolute; width: 100%;" ><%= @email.render_comments %></div>
-        <!-- <div class="col-md-4">
-          <%#= @email.comment %>
-        </div> -->
       </div>
     </div>
     <div class="col-md-1"></div>
-    <div class="col-md-5"><!-- This column contains email's reason, new, and comments -->
-      <!-- Row for new -->
+    <div class="col-md-5">
       <div class="row">
         <div style="display:none; background-color:#FCF0AD; padding: 10px;" id="current-comment-carrier">
           <h2>Comments</h2>
           <div class="modal-body" id="current-comment">
             
           </div>
+          <span></span>
         </div>
         <div class="row" >
+
           <div style="display: none; width: 100%; border-style:none;" id="new-comment">
+
             <br>
             
             <%= form_for(@comment, :html => { :style => 'width:100%' }) do |f| %>
+
+              <%= render partial: "shared/error_messages", locals: {item: @comment} %>
 
               <%= f.hidden_field :email_id, value: params[:id]  %>
               <%= f.hidden_field :user_id, value: current_user.id  %>
@@ -74,7 +76,7 @@
           </div>
         </div>
       </div>
-      <!-- Row for view -->
+      
       <div class="row">
         <h2>Email Should...</h2>
       </div>

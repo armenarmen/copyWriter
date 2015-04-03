@@ -9,6 +9,20 @@
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
         <% end %>
+        <% if logged_in? %>
+          <li>
+            <%= link_to "Profile", user_path(current_user.id) %>
+          </li>
+        <% end %>
+
+        <% if logged_in? %>
+          <li>
+            <%= link_to "log in!", login_path, style: "margin:12px; padding:1px;",class: "btn btn-small btn-info" %>
+          </li>
+        <% end %>
+
+        
+        
       </ul>
     </nav>
   </div>

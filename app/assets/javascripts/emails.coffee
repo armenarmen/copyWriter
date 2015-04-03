@@ -2,21 +2,23 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
 $ ->
 
     $body = $ "#email-body"
     $current_comment = $ "#current-comment"
     $body.mouseup ->
-
+        console.log "mouse up email-body"
         # This is where we get the selected text and feed it into 
         # new comment form.
 
         selObj = window.getSelection()
-        console.log selObj
+        
         range = selObj.getRangeAt 0
 
         if range.startOffset != range.endOffset and range.endOffset > range.startOffset
             $('#new-comment').show()
+            $("#current-comment-carrier").hide()
             $('#comment_char_began_at').val(parseInt(range.startOffset))
             $('#comment_char_ended_at').val(parseInt(range.endOffset))
             $('#commented-body').css("z-index", "1")
@@ -30,6 +32,7 @@ $ ->
 
     $commented_body = $ "#commented-body" ###### other thing....
     $commented_body.mouseup ->
+        console.log "mouse up commented-body"
         if window.getSelection()
             $("#current-comment-carrier").show() # just added 
             $("#current-comment").show()
@@ -46,6 +49,7 @@ $ ->
             if $beginSearchParam != ($beginSearchParam + $endSearchParam)
                 
                 $('#new-comment').show()
+                $("#current-comment-carrier").hide()
                 $('#comment_char_began_at').val($beginSearchParam)
                 $('#comment_char_ended_at').val($endSearchParam)
                 $current_comment.hide()
@@ -70,15 +74,8 @@ $ ->
         my_class_number = "." + $(@).attr("class").replace('commented ','')
 
         # find the text of the comment and put it into the current_comment DIV
-
-        my_text = $( "#{my_class_number}:first" ).text();
-
+        my_text = $( "#{my_class_number}:first" ).html();
         $("#current-comment-carrier").show()
-        
         $current_comment.html(my_text)
 
-        console.log $(my_class_number).length
 
-        console.log $(my_class_number).prev().text()
-
-        console.log $( "#{my_class_number}:first" ).text();

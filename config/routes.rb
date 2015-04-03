@@ -1,21 +1,9 @@
 Rails.application.routes.draw do
   get 'sessions/new'
 
-  # get 'emails/index'
 
-  # get 'emails/show'
+  resources :emails, only: [:create, :new, :show, :index] #do
 
-  # get 'emails/create'
-
-  # get 'emails/update'
-
-  # get 'emails/new'
-
-  # get 'emails/edit'
-
-  resources :emails #do
-    # resources :comments, :only => [:create]
-  # end
   resources :users
   resources :comments, only: [:create]
 
@@ -25,17 +13,7 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
 
   get 'contact' => 'static_pages#contact'
-  # get 'users/edit'
 
-  # get 'users/index'
-
-  # get 'users/show'
-
-  # get 'users/create'
-
-  # get 'users/update'
-
-  # get 'users/new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,21 +1,32 @@
-<h1>Emails#new</h1>
-<p>Find me in app/views/emails/new.html.erb</p>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@email) do |f| %>
-      <%#= render 'shared/error_messages' %>
+      <%= render partial: "shared/error_messages", locals: {item: @email} %>
+      <fieldset>
+        <legend>New Email</legend>
 
-      subject
-      <%= f.text_field :subject %>
-      <br>
-      body
-      <%= f.text_field :body %>
-      <br>
-      comment
-      <%= f.text_field :comment%>
+        <div class="control-group">
+          <%= f.label :subject, class: "control-label" %>
+          <div class="controls">
+            <%= f.text_field :subject %>
+          </div>
+          
+          <%= f.label :body, class: "control-label" %>
+          <div class="controls">
+            <%= f.text_area :body, placeholder:"Put the email copy that you want reviewd right here!", cols: 70, rows: 10 %>
+          </div>
+          
+          <%= f.label :comment, class: "control-label" %>
+          <div class="controls">
+            <%= f.text_area :comment, placeholder: "Tell Reviewers what this email is suppoded to do! IS it for new sign ups? Cold Email? PR?", cols: 70, rows: 4  %>
+          </div>
+        </div>
 
-
-      <%= f.submit "Create my email", class: "btn btn-primary" %>
+        <div class="form-actions">
+          <br>
+          <%= f.submit "Create my email", class: "btn " %>
+        </div>
+      </fieldset>
     <% end %>
   </div>
 </div>

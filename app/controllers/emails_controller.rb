@@ -1,4 +1,5 @@
 class EmailsController < ApplicationController
+  
   def index
     @emails = Email.all
   end
@@ -12,7 +13,7 @@ class EmailsController < ApplicationController
     @email = current_user.emails.new(user_params)
     if @email.save
       flash[:success] = "Email Written"
-      redirect_to :root
+      redirect_to user_path(current_user.id)
     else
       render 'new'
     end
