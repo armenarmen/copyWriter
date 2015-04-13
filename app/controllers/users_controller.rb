@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @emails = @user.emails
+    @emails = @user.emails.paginate(:page => params[:page], :per_page => 5)
   end
 
   def create
@@ -29,6 +29,14 @@ class UsersController < ApplicationController
 
   def edit
   end
+
+  # def emails
+  #   @user = User.find(params[:id])
+  #   Rails.logger.info("    >>>>>>>>>>>  >>>>>> #{params[:id]}")
+  #   # @emails = Email.where(user_id: params[:id])
+  #   # Rails.logger.info("    >>>>>>>>>>>  >>>>>> #{@emails}")
+  #   # Rails.logger.info("    >>>>>>>>>>>  >>>>>> #{params[:id]}")
+  # end
 
   private
 

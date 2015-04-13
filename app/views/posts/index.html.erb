@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Blog</h1>
+ <!--  -->
+
+<div class="col-md-12">
+  <% @posts.each do |post| %>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-10">
+        <h3>
+          <%= link_to post do %>
+            <%= post.title %>
+          <% end -%>
+          <% if current_user.present? and current_user.admin? %>
+            <%= link_to 'Edit', edit_post_path(post) %><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end -%>
+        </h3>
+
+        <p style="text-align:right">
+          by <%= post.user.full_name %> <%= post.created_at.strftime("%D") %>
+        </p>
+
+      </div>
+      <div class="col-md-1">
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-1">
+      </div>
+
+      <div class="col-md-10">
+        <% if post == Post.last %>
+          <%= post.body.html_safe %>
+        <% else %>
+          <%= post.body.truncate(200).html_safe %>
+          <%= link_to post do %>
+            <br>
+            read more
+          <% end -%>
+        <% end %>
+          
+
+        
+      </div>
+
+      <div class="col-md-1">
+      </div>
+
+    </div>
+
+
+  <% end -%>
+    
+  
+</div>
+ <!--  -->
+
+<br>
+<% if current_user.present? and current_user.admin? %>
+  <%= link_to 'New Post', new_post_path %>
+<% end -%>

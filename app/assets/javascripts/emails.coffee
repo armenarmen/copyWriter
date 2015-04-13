@@ -3,12 +3,13 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$ ->
+ready = ->
 
     $body = $ "#email-body"
     $current_comment = $ "#current-comment"
+
     $body.mouseup ->
-        console.log "mouse up email-body"
+        # console.log "mouse up email-body"
         # This is where we get the selected text and feed it into 
         # new comment form.
 
@@ -32,7 +33,7 @@ $ ->
 
     $commented_body = $ "#commented-body" ###### other thing....
     $commented_body.mouseup ->
-        console.log "mouse up commented-body"
+        # console.log "mouse up commented-body"
         if window.getSelection()
             $("#current-comment-carrier").show() # just added 
             $("#current-comment").show()
@@ -78,4 +79,5 @@ $ ->
         $("#current-comment-carrier").show()
         $current_comment.html(my_text)
 
-
+$(document).ready(ready)
+$(document).on('page:load', ready)

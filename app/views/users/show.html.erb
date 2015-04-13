@@ -1,14 +1,66 @@
 <h1><%= @user.full_name %>'s Profile</h1>
 <br>
-<%#= @user.email %><br>
-<!-- karma: <%#= @user.karma %> -->
+
 
 
 <div class="col-md-12">
-  <p>You have submitted <%= @user.emails.count %> email for review!</p>
-  <p><%= link_to "Get Advise", new_email_path %></p>
-  <p>You have left <%= @user.comments.count %> comments</p>
-  <p><%= link_to "view emails", emails_path %></p>
+  <div class="row">
+    <div class="col-md-6">
+      <h3><%= @user.emails.count %> <%= "Email".pluralize(@user.emails.count) %> Submitted</h3>
+    </div>
+    <div class="col-md-6">
+      <h3><%= @user.comments.count %> <%= "Comment".pluralize(@user.comments.count) %> Made</h3>
+    </div>
+<!--     <div class="col-md-4" style = "background-color: red">
+      <h1><%= @user.emails.count %> <span class="glyphicon glyphicon-envelope"> Submitted</h1> 
+    </div>
+    <div class="col-md-4" style = "background-color: yellow">
+      <p><%= link_to "Get Advice", new_email_path %></p>
+    </div>
+    <div class="col-md-4" style = "background-color: purple">
+      <p>You have left <%= @user.comments.count %> comments</p>
+      <p><%= link_to "view emails", emails_path %></p>
+    </div>
+
+    <span class="glyphicon glyphicon-envelope"> </span>You have submitted <%= @user.emails.count %> email for review! -->
+    
+    
+  </div>
+  <div class="row" >
+
+    <table class="table">
+      <h2>My Emails</h2>
+      <thead>
+        <tr>
+          <th>subject</th>
+          <th>body</th>
+          <th>reason</th>
+          <th>number of comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @emails.each do |email| %>
+          <tr>
+            <td>
+              <%= link_to(email_path(email.id)) do %>
+                <%= email.subject %>
+              <% end -%>
+            </td>
+            <td><%= email.body %></td>
+            <td><%= email.comment %></td>
+            <td><%= email.comments.count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <span>
+      <%= will_paginate @emails %>
+    </span>
+  </div>
 </div>
 
-<%= link_to "edit", user_path(current_user.id) %>
+<%#= link_to "edit", user_path(current_user.id) %>
+<br>
+
+
+

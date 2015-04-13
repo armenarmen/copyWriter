@@ -16,11 +16,11 @@ class Comment < ActiveRecord::Base
   has_many :suggestions, dependent: :destroy
 
   def no_range_overlap
-    if email.comments.where("char_began_at < #{char_began_at} AND char_ended_at > #{char_began_at}").count >= 1
+    if email.comments.where("char_began_at <= #{char_began_at} AND char_ended_at >= #{char_began_at}").count >= 1
       Rails.logger.info("-------------------broke in if")
       errors.add(:char_ended_at, "can't")
       Rails.logger.info(errors)
-    elsif email.comments.where("char_began_at > #{char_began_at} AND char_began_at < #{char_ended_at}").count >= 1
+    elsif email.comments.where("char_began_at >= #{char_began_at} AND char_began_at <= #{char_ended_at}").count >= 1
     # email comments where beginning charactaer is greater than 
       Rails.logger.info("-------------------broke in elsif")
       errors.add(:char_began_at, "can't")

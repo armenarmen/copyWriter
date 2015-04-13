@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  resources :posts
+  get 'blog', to: 'posts#index'
+  # resources :blogs, controller: 'posts'
   get 'sessions/new'
 
 
-  resources :emails, only: [:create, :new, :show, :index] #do
+  resources :emails, only: [:create, :new, :show, :index]
 
-  resources :users
+  resources :users, only: [:create, :new, :show]
   resources :comments, only: [:create]
 
 
